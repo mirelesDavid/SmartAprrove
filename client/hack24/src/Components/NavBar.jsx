@@ -29,7 +29,7 @@ const NavBar = ({ scrollToPoweredBy, scrollToTop }) => {
         {/* Navegación a la página de AI Chatting */}
         <button className="nav-button" onClick={() => navigate('/chatbot')}>AI Chatting</button>
         {/* Navegación a la página de Loan Approval */}
-        <button className="nav-button" onClick={() => navigate('/wallet')}>Loan Approval</button>
+        <button className="nav-button" onClick={() => navigate('/loansystem')}>Loan Approval</button>
         <button className="nav-button" onClick={() => navigate('/')}>About Us</button>
       </div>
       <button className="nav-button try-now" onClick={() => navigate('/try-now')}>Get News</button>

@@ -1,0 +1,98 @@
+.loan-system-container {
+    background-color: black;
+    color: white;
+    min-height: 100vh;
+    padding: 0; /* Elimina cualquier relleno */
+  }
+  
+  .loan-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 0; /* Elimina cualquier margen superior */
+    padding-top: 75px; /* Ajuste para evitar superposición con la navbar */
+  }
+  
+  .navbar {
+    margin: 0; /* Elimina cualquier margen adicional en la navbar */
+    border-bottom: none; /* Elimina cualquier borde adicional */
+  }
+  
+  h1 {
+    font-size: 60px;
+    background: -webkit-linear-gradient(#ffffff, #ff69b4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+  }
+  
+  p {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 40px;
+  }
+  
+  .form {
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  .input-group {
+    flex: 1;
+  }
+  
+  .input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #ff69b4;
+    background-color: #000;
+    color: white;
+    font-size: 16px;
+  }
+  
+  input[type="checkbox"] {
+    margin-left: 10px;
+  }
+  
+  .checkboxes {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .checkbox-group {
+    display: flex;
+    align-items: center;
+  }
+  
+  button.cta-button {
+    background: linear-gradient(90deg, #ffb6c1 0%, #ff69b4 100%);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  button.cta-button:hover {
+    background: linear-gradient(90deg, #ff69b4 0%, #ff1493 100%);
+  }
+  

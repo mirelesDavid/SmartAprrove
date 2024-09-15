@@ -42,7 +42,7 @@ const MainPage = () => {
             </p>
             <div className="button-container">
               <button className="cta-button" onClick={() => navigate('/chatbot')}>Use AI Chatting</button>
-              <button className="cta-button secondary-button" onClick={() => navigate('/wallet')}>Loan Approval</button>
+              <button className="cta-button secondary-button" onClick={() => navigate('/loansystem')}>Loan Approval</button>
             </div>
           </div>
         </div>
