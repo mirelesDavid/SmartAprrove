@@ -1,7 +1,13 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: black; /* Fondo negro para el cuerpo completo */
+}
 .loan-system-container {
     background-color: black;
     color: white;
-    min-height: 100vh;
+    height: 100vh;
     padding: 0; /* Elimina cualquier relleno */
   }
   
@@ -90,6 +96,8 @@
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
+    margin-top: 30px;
+    margin-bottom: 100px;
   }
   
   button.cta-button:hover {

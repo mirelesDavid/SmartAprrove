@@ -36,7 +36,7 @@ const MainPage = () => {
       <div className="content">
         <div className="body-container" ref={bodyContainerRef}>
           <div className="hero-section">
-            <h1>Smarter, faster loan decisions powered by AI</h1>
+            <h1>AI-Powered: Making Smarter Loan Decisions in Seconds</h1>
             <p>
             By using ##### a machine learning model, banks can predict loan outcomes with high accuracy, reducing defaults and financial risk. Our model classifier have shown 99.2% accuracy in predicting loan approvals, which greatly outperforms traditional methods.
             </p>
@@ -71,6 +71,7 @@ const MainPage = () => {
             <div className="analytics-text">
               <h3>SAFER FASTER SMARTER</h3>
               <p>Traditional loan approval processes are slow, requiring manual document verification, which can take days or weeks. This creates delays and inefficiencies for both banks and customers. AI-driven loan approval automates document processing and decision-making, reducing approval times and improving the customer experience.</p>
+              
             </div>
             <img src="/bank.png" alt="Analytics Image" className="analytics-image1" />
           </div>
