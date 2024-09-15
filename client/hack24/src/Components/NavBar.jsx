@@ -21,7 +21,7 @@ const NavBar = ({ scrollToPoweredBy, scrollToTop }) => {
     <div className="navbar">
       <div className="navbar-logo" onClick={handleHomeClick} style={{ cursor: 'pointer' }}>
         <img src="/ai.png" alt="Genius Logo" className="navbar-logo-img" />
-        <span className="navbar-logo-text">SmartApprove</span>
+        <span className="navbar-logo-text">PotyAI</span>
       </div>
       <div className="nav-links">
         <button className="nav-button" onClick={handleHomeClick}>Home</button>
