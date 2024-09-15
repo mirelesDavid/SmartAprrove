@@ -76,3 +76,17 @@ verification_status_joint_map = {
     "Verified": 2,
     np.nan: -1  # 'Not Applicable' case
 }
+
+purpose_map = {
+    "debt_consolidation": 0,
+    "small_business": 1,
+    "home_improvement": 2,
+    "major_purchase": 3,
+    "credit_card": 4,
+    "other": 5,
+    "house": 6,
+    "vacation": 7,
+    "car": 8,
+    "medical": 9,
+    "moving": 10
+}

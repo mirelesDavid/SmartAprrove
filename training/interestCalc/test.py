@@ -9,18 +9,18 @@ import re
 
 # Import the mappings from the mappings.py file
 from mappings import (
-    loan_status_map, grade_map, sub_grade_map, home_ownership_map, term_map
+    grade_map, sub_grade_map, home_ownership_map, term_map, purpose_map
 )
 
 keep = [
-    'loan_amnt', 'funded_amnt', 'funded_amnt_inv', 'term', 'int_rate', 'installment', 
-    'grade', 'sub_grade', 'emp_length', 'home_ownership', 'annual_inc', 'verification_status', 
-    'issue_d', 'loan_status', 'purpose', 'dti', 'delinq_2yrs', 'earliest_cr_line', 'fico_range_low', 
-    'fico_range_high', 'last_pymnt_d', 'next_pymnt_d'
+    'loan_amnt', 'term', 'int_rate', 'installment', 'grade', 'sub_grade', 'emp_length', 
+    'home_ownership', 'annual_inc', 'purpose', 'dti', 'fico_range_high', 'fico_range_low'
 ]
 
+# Output will be 'int_rate' and 'installment'
+
 # Load the dataset
-df = pd.read_csv('primo1k.csv', low_memory=False)
+df = pd.read_csv('accepted_2007_to_2018Q4.csv', low_memory=False)
 df = df[keep]
 
 # Function to convert emp_length to numeric
@@ -34,34 +34,20 @@ def emp_length_to_numeric(emp_length):
     else:
         return int(re.search(r'\d+', emp_length).group())
 
-# Apply emp_length_to_numeric function
+# Convert to numeric
 df['emp_length'] = df['emp_length'].apply(emp_length_to_numeric)
-
-# Apply the mappings to the dataset
-df['loan_status'] = df['loan_status'].map(loan_status_map)
 df['grade'] = df['grade'].map(grade_map)
 df['sub_grade'] = df['sub_grade'].map(sub_grade_map)
 df['home_ownership'] = df['home_ownership'].map(home_ownership_map)
 df['term'] = df['term'].map(term_map)
-
-# Handle date columns (converting to datetime and extracting year)
-date_columns = [
-    'issue_d', 'earliest_cr_line', 'last_pymnt_d', 'next_pymnt_d'
-]
-for col in date_columns:
-    df[col] = pd.to_datetime(df[col], format='%b-%Y', errors='coerce').dt.year
-
-# Convert any remaining object columns to numeric (if needed)
-for col in df.columns:
-    if df[col].dtype == 'object':
-        df[col] = pd.to_numeric(df[col], errors='coerce')
+df['purpose'] = df['purpose'].map(purpose_map)
 
 # Fill any NaNs that were created during the conversion
 df.fillna(0, inplace=True)
 
-# Separate features from the target variable (loan_status)
-y_test_actual = df['loan_status']  # For evaluation later
-X_test = df.drop('loan_status', axis=1)
+# Separate target variables (int_rate, installment) and features
+y = df[['int_rate', 'installment']]
+X = df.drop(['int_rate', 'installment'], axis=1)
 
 # Load the saved scaler and apply it to the test data
 with open('scaler.pkl', 'rb') as f:
@@ -76,10 +62,10 @@ X_test_tensor = torch.tensor(X_test_scaled, dtype=torch.float32)
 class LoanPredictionModel(nn.Module):
     def __init__(self, input_size, output_size):
         super(LoanPredictionModel, self).__init__()
-        self.fc1 = nn.Linear(input_size, 128)  # Changed from 64 to 128
-        self.fc2 = nn.Linear(128, 64)          # Changed from 64 to 32
-        self.fc3 = nn.Linear(64, 32)           # Changed from 32 to 16
-        self.fc4 = nn.Linear(32, output_size)  # Output size remains 5
+        self.fc1 = nn.Linear(input_size, 64)
+        self.fc2 = nn.Linear(64, 32)
+        self.fc3 = nn.Linear(32, 16)
+        self.fc4 = nn.Linear(16, 2)  # Output 2 values (int_rate, installment)
         self.relu = nn.ReLU()
         self.softmax = nn.Softmax(dim=1)
 
@@ -89,8 +75,6 @@ class LoanPredictionModel(nn.Module):
         x = self.relu(self.fc3(x))
         x = self.fc4(x)
         return self.softmax(x)
-
-
 
 # Load the LabelEncoder to determine the number of classes
 label_encoder = joblib.load('label_encoder.pkl')
