@@ -7,7 +7,11 @@ const NavBar = () => {
 
   return (
     <div className="navbar">
-      <div className="navbar-logo">Genius</div>
+      {/* Envuelve el logo y el texto dentro de un div con el onClick */}
+      <div className="navbar-logo" onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
+        <img src="/ai.png" alt="Genius Logo" className="navbar-logo-img" />
+        <span className="navbar-logo-text">Genius</span>
+      </div>
       <div className="nav-links">
         <button className="nav-button" onClick={() => navigate('/')}>Home</button>
         <button className="nav-button" onClick={() => navigate('/chatbot')}>About Us</button>
@@ -21,4 +25,3 @@ const NavBar = () => {
 };
 
 export default NavBar;
-

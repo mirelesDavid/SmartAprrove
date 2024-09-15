@@ -21,23 +21,32 @@ const MainPage = () => {
         </div>
         {/* Nueva sección de logos */}
         <div className="logos-section">
-          <h2>Featured On</h2>
+        <h2>Powered By</h2>
           <div className="logos-container">
-            <img src="/path-to-logo1.png" alt="Company 1" className="company-logo" />
-            <img src="/path-to-logo2.png" alt="Company 2" className="company-logo" />
-            <img src="/path-to-logo3.png" alt="Company 3" className="company-logo" />
-            <img src="/path-to-logo4.png" alt="Company 4" className="company-logo" />
+            <img src="/tensorflow.png" alt="Company 1" className="company-logo company-logo1" />
+            <img src="/openvino.png" alt="Company 2" className="company-logo company-logo2" />
+            <img src="/openai.png" alt="Company 3" className="company-logo company-logo3" />
+            <img src="/frida.png" alt="Company 4" className="company-logo company-logo4" />
           </div>
         </div>
-        {/* Nueva sección con imagen y texto explicativo */}
         <div className="analytics-section">
           <div className="analytics-content">
-            <img src="/path-to-analytics-image.png" alt="Analytics Image" className="analytics-image" />
+            <img src="/ai.png" alt="Analytics Image" className="analytics-image" />
             <div className="analytics-text">
               <h3>Built-In Analytics To Track Your NFTs</h3>
               <p>Use our built-in analytics dashboard to pull valuable insights and monitor the value of your Krypto portfolio over time.</p>
               <button className="cta-button analytics-button">View Our Pricing</button>
             </div>
+          </div>
+        </div>
+        <div className="analytics-section">
+          <div className="analytics-content">
+            <div className="analytics-text">
+              <h3>Built-In Analytics To Track Your NFTs</h3>
+              <p>Use our built-in analytics dashboard to pull valuable insights and monitor the value of your Krypto portfolio over time.</p>
+              <button className="cta-button analytics-button">View Our Pricing</button>
+            </div>
+            <img src="/ai.png" alt="Analytics Image" className="analytics-image" />
           </div>
         </div>
       </div>

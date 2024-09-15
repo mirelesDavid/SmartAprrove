@@ -17,9 +17,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: calc(100vh - 150px); /* Ajuste para ocupar toda la altura menos la navbar (60px) */
   flex-direction: column;
   background-color: black;
+  padding-top: 80px; /* Separación de la navbar */
+  padding-bottom: 0; /* Eliminar cualquier espacio adicional en la parte inferior */
+  margin-bottom: 0px;
 }
 
 .hero-section {
@@ -54,7 +57,7 @@
 }
 
 .cta-button {
-  background-color: #ff69b4;
+  background: linear-gradient(90deg, #ffffff 0%, #ff69b4 100%);
   color: black;
   border: none;
   border-radius: 20px;
@@ -62,55 +65,87 @@
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .cta-button:hover {
-  background-color: #ff1493;
+  background: linear-gradient(90deg, #ff1493 0%, #ff69b4 100%);
   color: white;
 }
 
 .secondary-button {
-  background-color: transparent;
-  border: 2px solid #ff69b4;
+  background: transparent;
+  border: 2px solid;
+  border-image: linear-gradient(90deg, #ffffff 0%, #ff69b4 100%) 1; /* Aplicamos gradiente al borde */
   color: white;
+  padding: 12px 30px;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .secondary-button:hover {
-  background-color: #ff69b4;
+  background: linear-gradient(90deg, #ffffff 0%, #ff69b4 100%);
   color: black;
 }
 
-/* Sección de logos */
-.logos-section {
-  padding: 40px 0;
-  color: white;
-}
 
-.logos-section h2 {
-  font-size: 32px;
-  margin-bottom: 30px;
+.logos-section {
+  padding: 50px 0; /* Espacio superior e inferior */
 }
 
 .logos-container {
   display: flex;
   justify-content: center;
-  gap: 40px;
+  align-items: center;
+  gap: 75px; /* Espacio entre los logos */
+  padding: 20px 40px; /* Espacio interno */
+  max-width: 1200px; /* Limitar el ancho máximo */
+  margin: 0 auto; /* Centrar el contenedor */
+  border-radius: 15px; /* Bordes redondeados */
 }
 
 .company-logo {
+  max-width: 300px; /* Ajustar tamaño de los logos */
+  height: auto;
+}
+
+.logos-section h2 {
+  text-align: center;
+  color: #ffffff;
+  font-size: 28px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.company-logo1 {
+  width: 200px;
+}
+
+.company-logo2 {
+  width: 200px;
+}
+
+.company-logo3 {
   width: 150px;
-  filter: grayscale(100%);
-  transition: filter 0.3s ease;
 }
 
-.company-logo:hover {
-  filter: grayscale(0%);
+.company-logo4 {
+  width: 200px;
 }
 
-/* Nueva sección de analytics */
+.company-logo {
+  object-fit: contain; 
+  height: auto; 
+}
+
+
+
 .analytics-section {
   padding: 60px 0;
+  margin-top: 10px;
   color: white;
 }
 
@@ -153,3 +188,21 @@
   font-size: 18px;
   font-weight: bold;
 }
+
+.hero-section h1, .logos-section h2 {
+  font-size: 100px;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  background: -webkit-linear-gradient(#ffffff, #ff69b4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.logos-section h2 {
+  font-size: 36px; /* Ajustar el tamaño del h2 para que sea más pequeño que el h1 */
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+

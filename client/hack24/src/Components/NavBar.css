@@ -4,21 +4,35 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 50px; /* Aumentamos el padding para alejar los elementos de las orillas */
+  padding: 0 50px;
   height: 60px;
   position: fixed;
   top: 0;
   z-index: 1000;
   color: white;
   font-family: 'Arial', sans-serif;
-  box-sizing: border-box; /* Asegura que el padding no afecte el tamaño */
+  box-sizing: border-box;
 }
 
 .navbar-logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo-img {
+  max-height: 50px;
+  margin-right: 10px; /* Espacio entre la imagen y el texto */
+}
+
+.navbar-logo-text {
   font-size: 24px;
   font-weight: bold;
-  color: #ff69b4;
+  background: -webkit-linear-gradient(#ffffff, #ff69b4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-left: 10px; /* Separación con la imagen */
 }
+
 
 .nav-links {
   display: flex;
@@ -26,43 +40,48 @@
 }
 
 .nav-button {
-  color: rgba(255, 255, 255, 0.8); /* Un color blanco ligeramente opaco */
-  font-size: 14px; /* Reducimos el tamaño de la fuente */
-  font-family: 'Roboto', sans-serif; /* Fuente más elegante */
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
   background: none;
   border: none;
   cursor: pointer;
   text-align: center;
   transition: background-color 0.3s ease, color 0.3s ease;
   padding: 10px;
-  letter-spacing: 0.5px; /* Espaciado entre letras para una apariencia más limpia */
+  letter-spacing: 0.5px;
 }
 
 .nav-button:hover {
   background-color: rgba(255, 255, 255, 0.1);
-  color: #ffffff; /* Al pasar el mouse, los textos se vuelven completamente blancos */
-}
-
-.try-now {
-  background-color: #ff69b4;
-  color: black;
-  border-radius: 20px;
-  padding: 10px 20px;
-  font-size: 14px; /* Tamaño del texto en el botón 'Try It Now' */
-  font-weight: bold; /* Para hacer el botón más destacado */
-}
-
-.try-now:hover {
-  background-color: #ff1493;
   color: #ffffff;
 }
 
-/* Para centrar los elementos dentro de un contenedor más ancho */
+.try-now {
+  background: linear-gradient(90deg, #ffffff 0%, #ff69b4 100%);
+  color: black;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.try-now:hover {
+  background: linear-gradient(90deg, #ff1493 0%, #ff69b4 100%);
+  color: #ffffff;
+}
+
 .navbar-container {
-  max-width: 1200px; /* Ajusta esto según el tamaño deseado */
+  max-width: 1200px;
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin: 0 auto; /* Centra el contenedor en la pantalla */
+  margin: 0 auto;
   align-items: center;
+}
+
+.navbar-logo {
+  cursor: pointer;
 }
