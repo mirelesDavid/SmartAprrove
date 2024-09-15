@@ -55,10 +55,9 @@
   gap: 20px;
   justify-content: center;
 }
-
 .cta-button {
-  background: linear-gradient(90deg, #ffffff 0%, #ff69b4 100%);
-  color: black;
+  background: linear-gradient(90deg, #ffb6c1 0%, #ff69b4 100%); /* Gradiente de un rosa suave a tu rosa actual */
+  color: white;
   border: none;
   border-radius: 20px;
   padding: 12px 30px;
@@ -69,14 +68,14 @@
 }
 
 .cta-button:hover {
-  background: linear-gradient(90deg, #ff1493 0%, #ff69b4 100%);
+  background: linear-gradient(90deg, #ff69b4 0%, #ff1493 100%); /* Gradiente más oscuro en hover */
   color: white;
 }
 
 .secondary-button {
   background: transparent;
   border: 2px solid;
-  border-image: linear-gradient(90deg, #ffffff 0%, #ff69b4 100%) 1; /* Aplicamos gradiente al borde */
+  border-image: linear-gradient(90deg, #ffb6c1 0%, #ff69b4 100%) 1; /* Gradiente de borde */
   color: white;
   padding: 12px 30px;
   border-radius: 20px;
@@ -87,7 +86,7 @@
 }
 
 .secondary-button:hover {
-  background: linear-gradient(90deg, #ffffff 0%, #ff69b4 100%);
+  background: linear-gradient(90deg, #ff69b4 0%, #ff1493 100%);
   color: black;
 }
 
@@ -145,7 +144,7 @@
 
 .analytics-section {
   padding: 60px 0;
-  margin-top: 10px;
+  margin-top: 45px;
   color: white;
 }
 
@@ -161,6 +160,11 @@
 
 .analytics-image {
   width: 400px;
+  height: auto;
+}
+
+.analytics-image1 {
+  width: 300px;
   height: auto;
 }
 
@@ -206,3 +210,41 @@
   margin-bottom: 20px;
 }
 
+
+/* Footer */
+.footer {
+  background: #000000; /* Fondo oscuro */
+  color: #ffffff; /* Texto blanco */
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid #000000; /* Borde superior */
+  margin-top: 40px; /* Espacio entre el contenido y el footer */
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-content p {
+  margin: 0;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px; /* Espacio entre los enlaces */
+}
+
+.footer-links a {
+  color: #ff69b4; /* Enlaces en color rosa */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #ff1493; /* Color más oscuro en hover */
+}

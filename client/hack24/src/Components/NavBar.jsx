@@ -1,25 +1,38 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './NavBar.css';
 
-const NavBar = () => {
+const NavBar = ({ scrollToPoweredBy, scrollToTop }) => {
   const navigate = useNavigate();
+  const location = useLocation(); // Usamos useLocation para obtener la ruta actual
+
+  // Función para manejar el click en "Home"
+  const handleHomeClick = () => {
+    if (location.pathname === '/') {
+      // Si ya estamos en la página principal, hacemos scroll hacia el inicio
+      scrollToTop();
+    } else {
+      // Si estamos en otra página, navegamos a la página principal
+      navigate('/');
+    }
+  };
 
   return (
     <div className="navbar">
-      {/* Envuelve el logo y el texto dentro de un div con el onClick */}
-      <div className="navbar-logo" onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
+      <div className="navbar-logo" onClick={handleHomeClick} style={{ cursor: 'pointer' }}>
         <img src="/ai.png" alt="Genius Logo" className="navbar-logo-img" />
         <span className="navbar-logo-text">Genius</span>
       </div>
       <div className="nav-links">
-        <button className="nav-button" onClick={() => navigate('/')}>Home</button>
-        <button className="nav-button" onClick={() => navigate('/chatbot')}>About Us</button>
-        <button className="nav-button" onClick={() => navigate('/features')}>Features</button>
-        <button className="nav-button" onClick={() => navigate('/how-to-use')}>How To Use</button>
-        <button className="nav-button" onClick={() => navigate('/pricing')}>Pricing</button>
+        <button className="nav-button" onClick={handleHomeClick}>Home</button>
+        <button className="nav-button" onClick={scrollToPoweredBy}>Powered By</button>
+        {/* Navegación a la página de AI Chatting */}
+        <button className="nav-button" onClick={() => navigate('/chatbot')}>AI Chatting</button>
+        {/* Navegación a la página de Loan Approval */}
+        <button className="nav-button" onClick={() => navigate('/wallet')}>Loan Approval</button>
+        <button className="nav-button" onClick={() => navigate('/')}>About Us</button>
       </div>
-      <button className="nav-button try-now" onClick={() => navigate('/try-now')}>Try It Now</button>
+      <button className="nav-button try-now" onClick={() => navigate('/try-now')}>Get News</button>
     </div>
   );
 };

@@ -41,7 +41,7 @@ const ChatBot = () => {
       <div className="chatbot-container">
         <div className="chatbot">
           <div className='headerXd'>
-            <h2 id='titleXd'>TutorAI</h2>
+            <h2 id='titleXd'>AI</h2>
           </div>
           {showButtons && <Botones onButtonClick={handleButtonClick} />}
           <ul className="chatbox">

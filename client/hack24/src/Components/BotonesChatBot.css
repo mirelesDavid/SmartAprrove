@@ -2,27 +2,27 @@
   display: flex;
   justify-content: space-around;
   padding: 20px;
-  background: #ffffff; /* Fondo blanco */
-  border-bottom: 1px solid #dcdcdc; /* Borde inferior */
+  background: black; /* Fondo negro */
+  border-bottom: 1px solid #333333; /* Borde inferior oscuro */
 }
 
 .button {
-  flex: 1; /* Ajusta todos los botones al mismo tamaño */
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   cursor: pointer;
-  color: black; /* Color del texto negro */
+  color: white; /* Texto blanco */
 }
 
 .button i {
-  font-size: 50px; /* Tamaño uniforme para todos los íconos */
-  color: black; /* Color de los íconos negro */
+  font-size: 50px;
+  color: #ff69b4; /* Íconos en color rosa */
 }
 
 .button p {
   margin-top: 10px;
   font-size: 14px;
-  color: black; /* Color del texto negro */
+  color: white; /* Texto blanco */
 }
