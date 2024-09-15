@@ -1,16 +1,29 @@
+#titleXd {
+  text-align: center;
+  color: white;
+  margin: 0; /* Removes default margins */
+  padding-top: 10px; /* Adjust this if you want a small gap */
+}
+
+/* Ensure the container uses available space efficiently */
 .chatbot-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background: black; /* Fondo negro como en la página principal */
+  height: calc(100vh - 120px); /* Rests the NavBar and h1 */
+  background: black;
+}
+
+/* Reduce padding at the top of the content */
+.main-content {
+  padding-top: 35px; /* Decreased from 60px to 30px */
 }
 
 .chatbot {
   width: 80%;
   height: 80%;
-  background: #000000; /* Fondo oscuro para el chatbot */
-  border: 1px solid #333333; /* Borde oscuro */
+  background: #000000;
+  border: 1px solid #333333;
   border-radius: 10px;
   overflow: hidden;
   display: flex;

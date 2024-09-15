@@ -82,7 +82,7 @@ def predict():
             'loan_amnt': float(form_data.get('loan_amnt', 0)),
             'funded_amnt': float(form_data.get('funded_amnt', 0)),
             'funded_amnt_inv': float(form_data.get('funded_amnt_inv', 0)),
-            'term': int(form_data.get('term', 0)),
+            'term': float(form_data.get('term', 0)),
             'int_rate': float(form_data.get('int_rate', 0)),
             'installment': float(form_data.get('installment', 0)),
             'grade': form_data.get('grade', ""),
@@ -96,8 +96,8 @@ def predict():
             'dti': float(form_data.get('dti', 0)),
             'delinq_2yrs': int(form_data.get('delinq_2yrs', 0)),
             'earliest_cr_line': form_data.get('earliest_cr_line', ""),
-            'fico_range_low': int(form_data.get('fico_range_low', 0)),
-            'fico_range_high': int(form_data.get('fico_range_high', 0)),
+            'fico_range_low': float(form_data.get('fico_range_low', 0)),
+            'fico_range_high': float(form_data.get('fico_range_high', 0)),
             'last_pymnt_d': form_data.get('last_pymnt_d', ""),
             'next_pymnt_d': form_data.get('next_pymnt_d', "")
         }])
