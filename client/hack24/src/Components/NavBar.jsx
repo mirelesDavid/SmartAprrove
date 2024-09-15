@@ -7,12 +7,18 @@ const NavBar = () => {
 
   return (
     <div className="navbar">
-      <button className="nav-button" onClick={() => navigate('/')}><i className="fa fa-user"></i></button>
-      <button className="nav-button" onClick={() => navigate('/')}><i className="fa fa-home"></i></button>
-      <button className="nav-button" onClick={() => navigate('/wallet')}><i className="fas fa-wallet"></i></button>
-      <button className="nav-button" onClick={() => navigate('/chatbot')}><i className="fa fa-robot"></i></button>
+      <div className="navbar-logo">Genius</div>
+      <div className="nav-links">
+        <button className="nav-button" onClick={() => navigate('/')}>Home</button>
+        <button className="nav-button" onClick={() => navigate('/chatbot')}>About Us</button>
+        <button className="nav-button" onClick={() => navigate('/features')}>Features</button>
+        <button className="nav-button" onClick={() => navigate('/how-to-use')}>How To Use</button>
+        <button className="nav-button" onClick={() => navigate('/pricing')}>Pricing</button>
+      </div>
+      <button className="nav-button try-now" onClick={() => navigate('/try-now')}>Try It Now</button>
     </div>
   );
-}
+};
 
 export default NavBar;
+

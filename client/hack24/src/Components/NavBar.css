@@ -1,39 +1,68 @@
 .navbar {
-    width: 80px;
-    background-color: #000000;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 20px;
-    height: 100vh; 
-    position: fixed;
-  }
-  
-  .nav-button {
-    width: 100%;
-    margin: 10px 0;
-    color: white;
-    font-size: 18px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    text-align: left;
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-
-  
-  .nav-button:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-  }
-
-  
-.nav-button i {
-
-  font-size: 24px;
-  margin-right: 10px; 
+  width: 100%;
+  background-color: #000000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px; /* Aumentamos el padding para alejar los elementos de las orillas */
+  height: 60px;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  color: white;
+  font-family: 'Arial', sans-serif;
+  box-sizing: border-box; /* Asegura que el padding no afecte el tamaño */
 }
-  
+
+.navbar-logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff69b4;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-button {
+  color: rgba(255, 255, 255, 0.8); /* Un color blanco ligeramente opaco */
+  font-size: 14px; /* Reducimos el tamaño de la fuente */
+  font-family: 'Roboto', sans-serif; /* Fuente más elegante */
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  padding: 10px;
+  letter-spacing: 0.5px; /* Espaciado entre letras para una apariencia más limpia */
+}
+
+.nav-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff; /* Al pasar el mouse, los textos se vuelven completamente blancos */
+}
+
+.try-now {
+  background-color: #ff69b4;
+  color: black;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 14px; /* Tamaño del texto en el botón 'Try It Now' */
+  font-weight: bold; /* Para hacer el botón más destacado */
+}
+
+.try-now:hover {
+  background-color: #ff1493;
+  color: #ffffff;
+}
+
+/* Para centrar los elementos dentro de un contenedor más ancho */
+.navbar-container {
+  max-width: 1200px; /* Ajusta esto según el tamaño deseado */
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto; /* Centra el contenedor en la pantalla */
+  align-items: center;
+}

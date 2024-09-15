@@ -3,7 +3,6 @@ import ChatInput from '../Components/ChatInput';
 import ChatMessage from '../Components/ChatMessage';
 import NavBar from '../Components/NavBar';
 import Botones from '../Components/BotonesChatBot';
-import Logo from '../Components/Logo';
 import './ChatBot.css';
 import axiosInstance from '../axiosInstance'; 
 
@@ -42,7 +41,6 @@ const ChatBot = () => {
       <div className="chatbot-container">
         <div className="chatbot">
           <div className='headerXd'>
-            <Logo />
             <h2 id='titleXd'>TutorAI</h2>
           </div>
           {showButtons && <Botones onButtonClick={handleButtonClick} />}

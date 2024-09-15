@@ -1,95 +1,155 @@
 .main-container {
   display: flex;
-  justify-content: flex-start;
+  flex-direction: column;
+  background-color: black;
+  color: white;
+  min-height: 100vh;
+  text-align: center;
 }
 
 .content {
   flex-grow: 1;
   padding: 20px;
-  margin-left: 80px;
-}
-
-.class-boxes-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
-  justify-content: space-evenly;
-}
-
-.blur-background {
-  filter: blur(5px);
-  transition: filter 0.3s ease;
-}
-
-.add-class-btn {
-  margin: 10px 10px 25px 0;
-  align-self: flex-end;
+  padding-top: 20px;
 }
 
 .body-container {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
   flex-direction: column;
+  background-color: black;
 }
 
-.custom-button {
-  --main-focus: #2d8cf0;
-  --font-color: #323232;
-  --bg-color-sub: #dedede;
-  --bg-color: #eee;
-  --main-color: #323232;
-  position: relative;
-  width: 150px;
-  height: 40px;
-  cursor: pointer;
+.hero-section {
+  max-width: 1050px;
+  padding: 20px;
+  color: white;
+  text-align: center;
+  width: 100%;
+}
+
+.hero-section h1 {
+  font-size: 100px;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  background: -webkit-linear-gradient(#ffffff, #ff69b4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-section p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.button-container {
   display: flex;
-  align-items: center;
-  border: 2px solid var(--main-color);
-  box-shadow: 4px 4px var(--main-color);
-  background-color: var(--bg-color);
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.custom-button, .custom-button__icon, .custom-button__text {
-  transition: all 0.3s;
-}
-
-.custom-button .custom-button__text {
-  transform: translateX(22px);
-  color: var(--font-color);
-  font-weight: 600;
-}
-
-.custom-button .custom-button__icon {
-  position: absolute;
-  transform: translateX(109px);
-  height: 100%;
-  width: 35px;
-  background-color: var(--bg-color-sub);
-  display: flex;
-  align-items: center;
+  gap: 20px;
   justify-content: center;
 }
 
-.custom-button .custom-svg {
-  width: 20px;
-  fill: var(--main-color);
+.cta-button {
+  background-color: #ff69b4;
+  color: black;
+  border: none;
+  border-radius: 20px;
+  padding: 12px 30px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.custom-button:hover {
-  background: var(--bg-color);
+.cta-button:hover {
+  background-color: #ff1493;
+  color: white;
 }
 
-.custom-button:hover .custom-button__text {
-  color: transparent;
+.secondary-button {
+  background-color: transparent;
+  border: 2px solid #ff69b4;
+  color: white;
 }
 
-.custom-button:hover .custom-button__icon {
+.secondary-button:hover {
+  background-color: #ff69b4;
+  color: black;
+}
+
+/* Sección de logos */
+.logos-section {
+  padding: 40px 0;
+  color: white;
+}
+
+.logos-section h2 {
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+
+.logos-container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.company-logo {
   width: 150px;
-  transform: translateX(0);
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
 }
 
-.custom-button:active {
-  transform: translate(3px, 3px);
-  box-shadow: 0px 0px var(--main-color);
+.company-logo:hover {
+  filter: grayscale(0%);
+}
+
+/* Nueva sección de analytics */
+.analytics-section {
+  padding: 60px 0;
+  color: white;
+}
+
+.analytics-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  max-width: 1100px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.analytics-image {
+  width: 400px;
+  height: auto;
+}
+
+.analytics-text {
+  max-width: 500px;
+  text-align: left;
+}
+
+.analytics-text h3 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.analytics-text p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.analytics-button {
+  background-color: #6a5acd;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-size: 18px;
+  font-weight: bold;
 }
