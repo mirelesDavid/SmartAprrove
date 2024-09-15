@@ -3,86 +3,34 @@ import pandas as pd
 import numpy as np
 import torch
 import torch.nn as nn
-import pickle
 import joblib
+import pickle
+import re
+from datetime import datetime
 
-# Mappings (moved from mappings.py)
-loan_status_map = {
-    "Charged Off": 0,
-    "Current": 1,
-    "Fully Paid": 2,
-    "In Grace Period": 3,
-    "Late (31-120 days)": 4
-}
+# Create the Flask app
+app = Flask(__name__)
 
-grade_map = {
-    "A": 0, "B": 1, "C": 2, "D": 3, "E": 4, "F": 5
-}
-
-sub_grade_map = {
-    "A1": 0, "A2": 1, "A3": 2, "A4": 3, "A5": 4,
-    "B1": 5, "B2": 6, "B3": 7, "B4": 8, "B5": 9,
-    "C1": 10, "C2": 11, "C3": 12, "C4": 13, "C5": 14,
-    "D1": 15, "D2": 16, "D3": 17, "D4": 18, "D5": 19,
-    "E1": 20, "E2": 21, "E3": 22, "E4": 23, "E5": 24,
-    "F1": 25, "F2": 26, "F3": 27, "F4": 28, "F5": 29
-}
-
-home_ownership_map = {
-    "RENT": 0, "OWN": 1, "MORTGAGE": 2
-}
-
-verification_status_map = {
-    "Not Verified": 0, "Source Verified": 1, "Verified": 2
-}
-
-pymnt_plan_map = {
-    "n": 0, "y": 1
-}
-
-debt_settlement_flag_map = {
-    "N": 0, "Y": 1
-}
-
-settlement_status_map = {
-    "ACTIVE": 0, "BROKEN": 1, "COMPLETE": 2
-}
-
-initial_list_status_map = {
-    "w": 0, "f": 1
-}
-
-application_type_map = {
-    "Individual": 0, "Joint App": 1
-}
-
-term_map = {
-    "36 months": 36, "60 months": 60
-}
-
-verification_status_joint_map = {
-    "Not Verified": 0, "Source Verified": 1, "Verified": 2,
-    np.nan: -1  # 'Not Applicable' case
-}
-
-# Load the saved model and scaler from the 'model' directory
-with open('model/scaler.pkl', 'rb') as f:
+# Load the saved scaler and label encoder
+with open('scaler.pkl', 'rb') as f:
     scaler = pickle.load(f)
 
-# Load the LabelEncoder from the 'model' directory
-label_encoder = joblib.load('model/label_encoder.pkl')
+label_encoder = joblib.load('label_encoder.pkl')
 
-# Define the loan status mapping (invert for readability)
+# Import the mappings from the mappings.py file (this assumes you have a mappings.py file)
+from mappings import loan_status_map, grade_map, sub_grade_map, home_ownership_map, term_map
+
+# Reverse loan_status_map to map predicted numerical values back to loan status strings
 inverse_loan_status_map = {v: k for k, v in loan_status_map.items()}
 
-# PyTorch model definition
+# Define the LoanPredictionModel class
 class LoanPredictionModel(nn.Module):
     def __init__(self, input_size, output_size):
         super(LoanPredictionModel, self).__init__()
-        self.fc1 = nn.Linear(input_size, 64)
-        self.fc2 = nn.Linear(64, 32)
-        self.fc3 = nn.Linear(32, 16)
-        self.fc4 = nn.Linear(16, output_size)
+        self.fc1 = nn.Linear(input_size, 128)
+        self.fc2 = nn.Linear(128, 64)
+        self.fc3 = nn.Linear(64, 32)
+        self.fc4 = nn.Linear(32, output_size)
         self.relu = nn.ReLU()
         self.softmax = nn.Softmax(dim=1)
 
@@ -93,50 +41,119 @@ class LoanPredictionModel(nn.Module):
         x = self.fc4(x)
         return self.softmax(x)
 
-# Initialize the model and load its state from the 'model' directory
-num_features = 124  # Adjust according to actual number of features
-num_classes = len(label_encoder.classes_)
-model = LoanPredictionModel(input_size=num_features, output_size=num_classes)
-model.load_state_dict(torch.load('model/model.pth'))
+# Initialize and load the trained model
+model = LoanPredictionModel(input_size=21, output_size=5)  # Adjust input/output sizes accordingly
+model.load_state_dict(torch.load('model.pth', map_location=torch.device('cpu')))
 model.eval()
 
-# Create a Flask application
-app = Flask(__name__)
+# Function to convert employment length to numeric
+def emp_length_to_numeric(emp_length):
+    if pd.isnull(emp_length):
+        return 0
+    if emp_length == '10+ years':
+        return 10
+    if emp_length == '< 1 year':
+        return 0.5
+    else:
+        return int(re.search(r'\d+', emp_length).group())
 
-# Home route to display the form
-@app.route('/', methods=['GET', 'POST'])
+# Function to handle date conversions (string to year)
+def handle_date(date_str):
+    try:
+        return pd.to_datetime(date_str, format='%b-%Y').year
+    except Exception:
+        return 0  # Default to 0 if the date cannot be parsed
+
+# Route for the homepage (data input form)
+@app.route('/')
 def index():
-    if request.method == 'POST':
-        # Collect form data
-        input_data = request.form.to_dict()
+    return render_template('index.html')
 
-        # Convert the form data into a DataFrame for processing
-        df = pd.DataFrame([input_data])
+@app.route('/predict', methods=['POST'])
+def predict():
+    form_data = request.json  # Usar request.json ya que estás enviando JSON
 
-        # Preprocess input
-        df.fillna(0, inplace=True)
-        for col in df.columns:
-            if df[col].dtype == 'object':
-                df[col] = pd.to_numeric(df[col], errors='coerce')
+    # Verificar los datos recibidos
+    print("Datos recibidos en Flask:", form_data)
 
-        # Scale the input
-        X_test_scaled = scaler.transform(df)
-        X_test_tensor = torch.tensor(X_test_scaled, dtype=torch.float32)
+    try:
+        # Convertir los datos a DataFrame
+        user_input = pd.DataFrame([{
+            'loan_amnt': float(form_data.get('loan_amnt', 0)),
+            'funded_amnt': float(form_data.get('funded_amnt', 0)),
+            'funded_amnt_inv': float(form_data.get('funded_amnt_inv', 0)),
+            'term': int(form_data.get('term', 0)),
+            'int_rate': float(form_data.get('int_rate', 0)),
+            'installment': float(form_data.get('installment', 0)),
+            'grade': form_data.get('grade', ""),
+            'sub_grade': form_data.get('sub_grade', ""),
+            'emp_length': form_data.get('emp_length', ""),
+            'home_ownership': form_data.get('home_ownership', ""),
+            'annual_inc': float(form_data.get('annual_inc', 0)),
+            'verification_status': form_data.get('verification_status', ""),
+            'issue_d': form_data.get('issue_d', ""),
+            'purpose': form_data.get('purpose', ""),
+            'dti': float(form_data.get('dti', 0)),
+            'delinq_2yrs': int(form_data.get('delinq_2yrs', 0)),
+            'earliest_cr_line': form_data.get('earliest_cr_line', ""),
+            'fico_range_low': int(form_data.get('fico_range_low', 0)),
+            'fico_range_high': int(form_data.get('fico_range_high', 0)),
+            'last_pymnt_d': form_data.get('last_pymnt_d', ""),
+            'next_pymnt_d': form_data.get('next_pymnt_d', "")
+        }])
 
-        # Make prediction
+        # Verifica que los datos han sido correctamente convertidos
+        print("Datos convertidos en DataFrame:", user_input)
+
+        # Apply the same transformations as in the original script
+        # Convert emp_length to numeric
+        user_input['emp_length'] = user_input['emp_length'].apply(emp_length_to_numeric)
+
+        # Apply mappings
+        user_input['grade'] = user_input['grade'].map(grade_map)
+        user_input['sub_grade'] = user_input['sub_grade'].map(sub_grade_map)
+        user_input['home_ownership'] = user_input['home_ownership'].map(home_ownership_map)
+        user_input['term'] = user_input['term'].map(term_map)
+
+        # Handle date columns (convert to year)
+        user_input['issue_d'] = user_input['issue_d'].apply(handle_date)
+        user_input['earliest_cr_line'] = user_input['earliest_cr_line'].apply(handle_date)
+        user_input['last_pymnt_d'] = user_input['last_pymnt_d'].apply(handle_date)
+        user_input['next_pymnt_d'] = user_input['next_pymnt_d'].apply(handle_date)
+
+        # Convert any remaining object columns to numeric (if needed)
+        for col in user_input.columns:
+            if user_input[col].dtype == 'object':
+                user_input[col] = pd.to_numeric(user_input[col], errors='coerce')
+
+        # Fill any NaNs created during conversion
+        user_input.fillna(0, inplace=True)
+
+        # Scale the input data
+        user_input_scaled = scaler.transform(user_input)
+
+        # Convert the scaled data into a tensor
+        user_input_tensor = torch.tensor(user_input_scaled, dtype=torch.float32)
+
+        # Run the model to make predictions
         with torch.no_grad():
-            test_outputs = model(X_test_tensor)
-            _, predicted = torch.max(test_outputs, 1)
+            output = model(user_input_tensor)
+            _, predicted = torch.max(output, 1)
 
-        # Inverse transform the predicted labels back to the original form
-        predicted_label = label_encoder.inverse_transform(predicted.numpy())[0]
-        predicted_label_str = inverse_loan_status_map[predicted_label]
+        # Inverse transform the predicted label using the reverse loan_status_map
+        predicted_label_numeric = predicted.item()
+        predicted_label = inverse_loan_status_map.get(predicted_label_numeric, "Unknown")
 
-        # Return the predicted result to the user
-        return render_template('index.html', prediction=predicted_label_str)
+        print("Resultado de la predicción:", predicted_label)
 
-    # On GET, render the form
-    return render_template('index.html', prediction=None)
+        return {"prediction": predicted_label}
 
+    except Exception as e:
+        # Capturar cualquier error y devolver un mensaje de error claro
+        print(f"Error durante el procesamiento de la predicción: {str(e)}")
+        return {"error": f"Error durante el procesamiento: {str(e)}"}, 500
+
+
+# Run the Flask app
 if __name__ == '__main__':
     app.run(debug=True)
