@@ -12,6 +12,7 @@
   color: white;
   font-family: 'Arial', sans-serif;
   box-sizing: border-box;
+  justify-content: space-between; /* Distribuir espacio entre logo y nav-links */
 }
 
 .navbar-logo {
@@ -37,6 +38,7 @@
 .nav-links {
   display: flex;
   gap: 30px;
+  justify-content: center;
 }
 
 .nav-button {

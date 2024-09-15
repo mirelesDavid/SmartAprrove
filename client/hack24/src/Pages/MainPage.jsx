@@ -36,9 +36,9 @@ const MainPage = () => {
       <div className="content">
         <div className="body-container" ref={bodyContainerRef}>
           <div className="hero-section">
-            <h1>Examine the Potential of Genius's AI Chatting</h1>
+            <h1>Smarter, faster loan decisions powered by AI</h1>
             <p>
-              At Genius, we believe in the power of artificial intelligence to transform the way you work and create. Our platform offers a suite of advanced AI tools designed to revolutionize your writing, coding, and media creation processes.
+            By using ##### a machine learning model, banks can predict loan outcomes with high accuracy, reducing defaults and financial risk. Our model classifier have shown 99.2% accuracy in predicting loan approvals, which greatly outperforms traditional methods.
             </p>
             <div className="button-container">
               <button className="cta-button" onClick={() => navigate('/chatbot')}>Use AI Chatting</button>
@@ -60,18 +60,17 @@ const MainPage = () => {
           <div className="analytics-content">
             <img src="/ai.png" alt="Analytics Image" className="analytics-image" />
             <div className="analytics-text">
-              <h3>Built-In Analytics To Track Your NFTs</h3>
-              <p>Use our built-in analytics dashboard to pull valuable insights and monitor the value of your Krypto portfolio over time.</p>
-              <button className="cta-button analytics-button">View Our Pricing</button>
+              <h3>Built-In Analytics To Track Your Loans</h3>
+              <p>The use of AI ensures decisions are made based on objective criteria, reducing human error and bias, and enabling more reliable and consistent lending decisions.</p>
+              <button className="cta-button analytics-button" onClick={() => navigate('/loansystem')}>Test Loan Approval Model</button>
             </div>
           </div>
         </div>
         <div className="analytics-section">
           <div className="analytics-content">
             <div className="analytics-text">
-              <h3>Built-In Analytics To Track Your NFTs</h3>
-              <p>Use our built-in analytics dashboard to pull valuable insights and monitor the value of your Krypto portfolio over time.</p>
-              <button className="cta-button analytics-button">View Our Pricing</button>
+              <h3>SAFER FASTER SMARTER</h3>
+              <p>Traditional loan approval processes are slow, requiring manual document verification, which can take days or weeks. This creates delays and inefficiencies for both banks and customers. AI-driven loan approval automates document processing and decision-making, reducing approval times and improving the customer experience.</p>
             </div>
             <img src="/bank.png" alt="Analytics Image" className="analytics-image1" />
           </div>
@@ -80,7 +79,7 @@ const MainPage = () => {
       {/* Footer */}
       <footer className="footer">
         <div className="footer-content">
-          <p>© 2024 Genius AI. All rights reserved.</p>
+          <p>© 2024 SmartApprove, All rights reserved.</p>
           <div className="footer-links">
             <a href="/privacy-policy">Privacy Policy</a>
             <a href="/terms-of-service">Terms of Service</a>

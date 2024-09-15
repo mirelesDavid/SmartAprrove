@@ -21,7 +21,7 @@ const NavBar = ({ scrollToPoweredBy, scrollToTop }) => {
     <div className="navbar">
       <div className="navbar-logo" onClick={handleHomeClick} style={{ cursor: 'pointer' }}>
         <img src="/ai.png" alt="Genius Logo" className="navbar-logo-img" />
-        <span className="navbar-logo-text">Genius</span>
+        <span className="navbar-logo-text">SmartApprove</span>
       </div>
       <div className="nav-links">
         <button className="nav-button" onClick={handleHomeClick}>Home</button>
@@ -32,7 +32,6 @@ const NavBar = ({ scrollToPoweredBy, scrollToTop }) => {
         <button className="nav-button" onClick={() => navigate('/loansystem')}>Loan Approval</button>
         <button className="nav-button" onClick={() => navigate('/')}>About Us</button>
       </div>
-      <button className="nav-button try-now" onClick={() => navigate('/try-now')}>Get News</button>
     </div>
   );
 };
