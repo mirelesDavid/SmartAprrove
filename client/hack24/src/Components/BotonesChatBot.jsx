@@ -3,9 +3,9 @@ import './BotonesChatBot.css';
 
 const Botones = ({ onButtonClick }) => {
   const buttons = [
-    { icon: "fas fa-question", text: "What classes am I enrolled in? " },
-    { icon: "fas fa-calendar", text: "What are the ids of my Classes that I am registered for?" },
-    { icon: "fas fa-user", text: "What are my classes about?" }
+    { icon: "fas fa-question", text: "What is your role as a chatbot in this system?" },
+    { icon: "fas fa-calendar", text: "What does the 'Installment' field mean in loan approval?" },
+    { icon: "fas fa-chart-line", text: "How does my 'FICO Score' impact loan approval?" }
   ];
 
   return (
