@@ -50,7 +50,7 @@ const MainPage = () => {
         <div className="logos-section" ref={poweredBySectionRef}>
           <h2>Powered By</h2>
           <div className="logos-container">
-            <img src="/tensorflow.png" alt="Company 1" className="company-logo company-logo1" />
+            <img src="/pytorch" alt="Company 1" className="company-logo company-logo1" />
             <img src="/openvino.png" alt="Company 2" className="company-logo company-logo2" />
             <img src="/openai.png" alt="Company 3" className="company-logo company-logo3" />
             <img src="/frida.png" alt="Company 4" className="company-logo company-logo4" />
