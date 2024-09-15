@@ -38,7 +38,7 @@ const MainPage = () => {
           <div className="hero-section">
             <h1>AI-Powered: Making Smarter Loan Decisions in Seconds</h1>
             <p>
-            By using PyTorch a machine learning model, banks can predict loan outcomes with high accuracy, reducing defaults and financial risk. Our model classifier have shown 99.2% accuracy in predicting loan approvals, which greatly outperforms traditional methods.
+            Harnessing the power of PyTorch and advanced machine learning algorithms, our AI-driven solution empowers banks to predict loan outcomes with remarkable accuracy. With a 99.2% success rate in predicting loan approvals, our model dramatically reduces defaults and financial risks, surpassing traditional evaluation methods.
             </p>
             <div className="button-container">
               <button className="cta-button" onClick={() => navigate('/chatbot')}>Use AI Chatting</button>

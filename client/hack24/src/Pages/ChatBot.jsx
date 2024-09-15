@@ -37,13 +37,12 @@ const ChatBot = () => {
 
   return (
     <>
-      <NavBar />
-      
+  <NavBar style={{position:"fixed"}}/>
+    <div className="main-content">
+      <h1 id='titleXd'>AI Chatting</h1>
       <div className="chatbot-container">
-        
         <div className="chatbot">
           <div className='headerXd'>
-            <h2 id='titleXd'>AI</h2>
           </div>
           {showButtons && <Botones onButtonClick={handleButtonClick} />}
           <ul className="chatbox">
@@ -54,6 +53,7 @@ const ChatBot = () => {
           <ChatInput onSendMessage={handleSendMessage} />
         </div>
       </div>
+    </div>
     </>
   );
 };
